@@ -1,0 +1,107 @@
+---
+#
+# Global configuration file
+#
+
+### OBM configuration ####
+
+# OBM version
+linshare_major_version: 2.5
+
+# Public URL of the OBM web interface
+linshare_external_url: linshare.example.com
+
+# Database configuration (either PGSQL or MYSQL) (default: PGSQL)
+#linshare_db_type: PGSQL
+
+# The server hosting the database or the SQL load balancer
+linshare_db_host: linshare.example.com
+
+# The server hosting the database or the master of replication
+linshare_db_master_host: "{{ linshare_db_host }}"
+
+# Database configuration
+linshare_db_user: linshare
+linshare_db_password: linshare
+linshare_db_name: linshare
+
+# Language of the database (fr/en)
+linshare_language: fr
+
+# The server hosting the directory
+linshare_ldap_host: linshare.example.com
+
+#### OBM SSL certificates ####
+
+ca_path: /var/lib/linshare-ca/cacert.pem
+cert_path: /etc/linshare/certs/linshare_cert.pem
+key_path: /etc/linshare/certs/linshare_cert.pem
+
+#### Global NTP server (if needed) ####
+
+#ntp_server: 192.168.122.1
+
+#### Packages mode (default: internet) ####
+
+## Allows you to deploy your architecture without internet access
+##
+##  internet : get packages from internet repositories (the default)
+##  mirror   : add all repositories hostnames in /etc/hosts and make
+##             them point to `packages_mirror_ip`.
+##  rsync    : rsync resources/rpm-repos directory and install from it [not implemented yet]
+##
+#packages_mode: internet
+#packages_mirror_ip: 192.168.122.1
+
+#### OBM-Autoconf extensions ####
+
+# Lightning Version
+lightning_tb10: "lightning-1.2.3.24"
+lightning_tb17: "lightning-1.9.24"
+
+# OBM-connector Version
+linshare_connector_tb17: "linshare-connector-3.2.0.15"
+linshare_connector_tb24: "linshare-connector-4.0.3"
+
+# SASL variables
+sasl_ldap_search_base: dc=local
+sasl_ldap_filter: "(|(&(mailBox=%U@%d)(objectClass=linshareUser)(mailAccess=PERMIT))(&(uid=%U)(cn=Administrator Cyrus)(objectClass=posixAccount)))"
+sasl_ldap_bind_dn: "uid=ldapadmin,ou=sysusers,dc=local"
+sasl_ldap_bind_pw: "mdp3PaAL"
+sasl_backend: "pam"
+
+# User Password
+cyrus_password: cyrus
+cyrus_ssl: "yes"
+
+# Postfix variables
+smtp_in_hostname: "linshare.example.com"
+smtp_in_mynetworks: ""
+smtp_in_relayhost: ""
+smtp_in_submission: "yes"
+smtp_in_smtps: "no"
+smtp_in_ssl: "no"
+
+#### OBM-UI ####
+remove_banner: "yes"
+
+#### Proxy Configuration ####
+# Will be deployed on all remote hosts
+#proxy_host:
+#proxy_port:
+#proxy_username:
+#proxy_password:
+
+
+#### Murder Configuration ####
+mupdate_server: murder
+mupdate_port: 3905
+mupdate_username: murder
+mupdate_authname: murder
+mupdate_password: murder
+
+proxyservers: murder
+proxy_authname: murder
+proxy_password_murder: murder
+murder_password: murder
+use_murder: "yes"

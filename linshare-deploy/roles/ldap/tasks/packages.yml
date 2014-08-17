@@ -1,0 +1,6 @@
+---
+- name: Install OBM LDAP Server
+  yum: pkg={{ item }}
+  with_items:
+   - linshare-ldap
+  tags: ldap

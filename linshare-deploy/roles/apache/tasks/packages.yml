@@ -1,0 +1,5 @@
+---
+- name: Install Apache httpd
+  yum: pkg=httpd-itk state=present
+  yum: pkg=mod_ssl state=present
+  tags: apache

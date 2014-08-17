@@ -1,0 +1,14 @@
+---
+- name: Copy slapd.conf
+  template: src=slapd.conf dest=/etc/openldap/slapd.conf owner=root group=ldap mode=0640
+  register: command_result
+  tags: ldap
+
+- name: Copy ldap
+  template: src=ldap dest=/etc/sysconfig/ldap
+  tags: ldap
+
+- name: Restart LDAP
+  service: name=slapd state=restarted
+  when: command_result.changed
+  tags: ldap

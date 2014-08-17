@@ -1,0 +1,19 @@
+---
+- name: Install some common and useful packages
+  yum: pkg={{ item }}
+  with_items:
+   - vim
+   - mlocate
+   - wget
+   - curl
+   - policycoreutils-python
+   - man
+   - tmux
+   - htop
+   - atop
+   - strace
+   - screen
+   - rsync
+   - bind-utils
+   - createrepo
+  tags: packages

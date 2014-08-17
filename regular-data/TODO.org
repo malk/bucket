@@ -1,0 +1,2 @@
+
+* what can I represent with a format readable by a non backtracking Regexp? (a pure deterministic finite automata)

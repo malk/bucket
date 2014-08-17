@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="https://linshare-integration-3.linagora.dc1/" />
+<title>create-top-level-domain-soonToBeDestroyed</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">create-top-level-domain-soonToBeDestroyed</td></tr>
+</thead><tbody>
+<tr>
+	<td>click</td>
+	<td>id=MENU-DOMAINS</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=MENU-MANAGE_DOMAINS</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>id=LinShareRootDomain-add</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=LinShareRootDomain-add</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>id=LinShareRootDomain-add-top</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=LinShareRootDomain-add-top</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForPageToLoad</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=identifier</td>
+	<td>soonToBeDestroyed</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=name</td>
+	<td>soonToBeDestroyed</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=description</td>
+	<td>dummy domain for my tests</td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>css=#language option[value=0]</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=language</td>
+	<td>label=English</td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>css=#mailConfig option[value=0]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=mailConfig</td>
+	<td>label=Default mail config</td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>css=#mimePolicy option[value=0]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=mimePolicy</td>
+	<td>label=Default Mime Policy</td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>css=#userRole option[value=0]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=userRole</td>
+	<td>label=Simple</td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>css=#policy option[value=0]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=policy</td>
+	<td>label=DefaultDomainPolicy</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=submit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementNotPresent</td>
+	<td>id=submit</td>
+	<td></td>
+</tr>
+</tbody></table>
+</body>
+</html>

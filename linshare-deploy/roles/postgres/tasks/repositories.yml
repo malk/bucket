@@ -1,0 +1,52 @@
+---
+- name: Deploy Postgres repository RPM (mirror mode)
+  copy: >
+      src=resources/pgdg-centos91-9.1-4.noarch.rpm
+      dest=/root/pgdg-centos91-9.1-4.noarch.rpm
+  when: mode == "mirror"
+  tags: postgres
+
+- name: Enable Postgres repository (mirror mode)
+  yum: name=/root/pgdg-centos91-9.1-4.noarch.rpm
+  when: mode == "mirror"
+  tags: postgres
+
+- name: Spoof Postgres repository hostname in /etc/hosts (mirror mode)
+  lineinfile: >
+              dest=/etc/hosts
+              regexp='.*yum\.postgresql\.org$'
+              line="{{ packages_mirror_ip }}    yum.postgresql.org"
+  when: mode == "mirror"
+  tags: postgres
+
+- name: Enable Postgresql 9.1 Repository for CentOS (internet mode) [with proxy]
+  yum: name=http://yum.postgresql.org/9.1/redhat/rhel-6-x86_64/pgdg-centos91-9.1-4.noarch.rpm
+  environment: proxy_env
+  when: mode == "internet" and proxy_host is defined and  ansible_distribution == "CentOS"
+  tags: postgres
+
+- name: Enable Postgresql 9.1 Repository for CentOS (internet mode) [without proxy]
+  yum: name=http://yum.postgresql.org/9.1/redhat/rhel-6-x86_64/pgdg-centos91-9.1-4.noarch.rpm
+  when: mode == "internet" and proxy_host is not defined and ansible_distribution == "CentOS"
+  tags: postgres
+
+- name: Enable Postgresql 9.1 Repository for RedHat (internet mode) [with proxy]
+  yum: name=http://yum.postgresql.org/9.1/redhat/rhel-6-x86_64/pgdg-redhat91-9.1-5.noarch.rpm
+  environment: proxy_env
+  when: mode == "internet" and proxy_host is defined and ansible_distribution == "RedHat"
+  tags: postgres
+
+- name: Enable Postgresql 9.1 Repository for RedHat (internet mode) [without proxy]
+  yum: name=http://yum.postgresql.org/9.1/redhat/rhel-6-x86_64/pgdg-redhat91-9.1-5.noarch.rpm
+  when: mode == "internet" and proxy_host is not defined and ansible_distribution == "RedHat"
+  tags: postgres
+
+- name: Remove any Postgres hostname spoofing (internet mode)
+  lineinfile: >
+              dest=/etc/hosts
+              regexp='.*yum\.postgresql\.org$'
+              state=absent
+  when: mode == "internet"
+  notify:
+   - Clean yum repositories
+  tags: postgres

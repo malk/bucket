@@ -1,0 +1,6 @@
+---
+- name: Install linshare-tomcat
+  yum: pkg=tomcat6
+  
+- name: Enable tomcat
+  service: name=linshare-tomcat enabled=yes state=started
